@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>solotte! 先払い残高の提案</title>
+  <meta name="description" content="solotte! に、店舗で使える先払い残高を作る。収益向上と会計上のメリット、達成の仕方まで。">
+  <meta property="og:title" content="solotte! 先払い残高の提案">
+  <meta property="og:description" content="アプリで残高を買い、オリエンタルラウンジで使う。マイルとは別。">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#0c0a08">
+  <style>
+    :root {
+      --bg: #0c0a08;
+      --card: #1a1612;
+      --line: #2c261f;
+      --gold: #d4a574;
+      --cream: #f4ede3;
+      --muted: #a89884;
+      --black: #0c0a08;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-text-size-adjust: 100%;
+    }
+    a { color: var(--gold); }
+    .wrap {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 4rem;
+    }
+    header.hero {
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+    h1 {
+      font-size: 1.7rem;
+      line-height: 1.4;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+    }
+    .lead {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1rem;
+    }
+    nav {
+      margin: 1.25rem 0 0;
+      padding: 0;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 0.75rem 0.4rem 0;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    nav a:hover { border-bottom-color: var(--gold); }
+    section {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    h2 {
+      font-size: 1.35rem;
+      line-height: 1.4;
+      margin: 0 0 1rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    p { margin: 0 0 1rem; }
+    p:last-child { margin-bottom: 0; }
+    .note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    ol.flow, ul.plain {
+      margin: 0 0 1rem;
+      padding-left: 1.25rem;
+    }
+    ol.flow li, ul.plain li { margin: 0.4rem 0; }
+    .steps {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .step, .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+    .step .n, .label {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .step strong, .card strong {
+      display: block;
+      margin: 0.2rem 0 0.35rem;
+      font-size: 1.05rem;
+    }
+    .split {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .gold {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .gold .label, .gold .note { color: #4a3518; }
+    .num {
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0.25rem 0 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.5rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { color: var(--gold); font-weight: 600; font-size: 0.75rem; }
+    .kpi-name { font-weight: 700; }
+    footer {
+      padding: 1.5rem 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    @media (min-width: 640px) {
+      h1 { font-size: 2rem; }
+      .num { font-size: 2.6rem; }
+      .split { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <p class="kicker">クラウドN ／ solotte!　社内共有</p>
+      <h1>アプリで残高を買い、<br>オリラジで使う。</h1>
+      <p class="lead">solotte! に、店舗で使える先払い残高を作る提案です。先に何を作るかを書き、そのあと目的、達成の仕方の順です。</p>
+      <nav>
+        <a href="#what">何を作るか</a>
+        <a href="#why">目的</a>
+        <a href="#how">どう達成するか</a>
+        <a href="#ref">参考企業</a>
+        <a href="#start">始め方</a>
+      </nav>
+    </header>
+
+    <section id="what">
+      <p class="kicker">1. 何を作るか</p>
+      <h2>solotte! に、店舗で使える先払い残高を作る。</h2>
+      <p>顧客がアプリの中でお金をチャージし、オリエンタルラウンジなどクラウドNの店舗で支払えるようにします。今のマイルとは別の残高です。</p>
+
+      <div class="steps">
+        <div class="card gold">
+          <div class="label">買う</div>
+          <strong>3,000 / 5,000 / 10,000 / 30,000円</strong>
+          <span class="note">アプリ内でチャージします。決済はクレジットカードや PayPay です。Apple / Google のアプリ内課金は使いません。店舗の飲食に使うお金だからです。</span>
+        </div>
+        <div class="card">
+          <div class="label">使う</div>
+          <strong>相席料金と飲食</strong>
+          <span class="note">現金の代わりに、残高で払います。最初はオリエンタルラウンジ。あとから ag などグループ店舗へ広げます。</span>
+        </div>
+        <div class="card">
+          <div class="label">残る</div>
+          <strong>次の来店理由になる</strong>
+          <span class="note">ホームに「5,000円」が見えます。「今日はJISでもいいかな」ではなく、「オリラジに入っているから行くか」になります。</span>
+        </div>
+      </div>
+
+      <h3>使い方</h3>
+      <ol class="flow">
+        <li>アプリでチャージする。</li>
+        <li>ホームに残高が見える。</li>
+        <li>店に行き、相席や飲食を残高で払う。</li>
+        <li>残りがあるので、またオリラジに来る。</li>
+      </ol>
+
+      <h3>今のマイルとの違い</h3>
+      <p>マイルは残します。役割が違うので、同じ財布に入れません。</p>
+      <div class="split">
+        <div class="card">
+          <div class="label">今あるマイル</div>
+          <strong>来店したから貯まる</strong>
+          <span class="note">チェックインや相席のご褒美です。アマギフ交換もあります。顧客が買ったものではありません。</span>
+        </div>
+        <div class="card gold">
+          <div class="label">今回つくる残高</div>
+          <strong>入れるから、次に来る</strong>
+          <span class="note">顧客が購入します。店舗支払い専用です。マイルと混ぜません。現金やアマギフには換えません。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <p class="kicker">2. 目的</p>
+      <h2>理由は2つです。収益向上と、会計上のメリット。</h2>
+
+      <h3>収益向上</h3>
+      <p>残高があると、次に行く店が先に決まります。競合ではなくオリラジに来るので、売上が自社に残ります。金利を稼ぐ話ではなく、来店先を固定する話です。</p>
+      <div class="card gold">
+        <div class="label">取りにいく増収（試算）</div>
+        <p class="num">年 3.9億円</p>
+        <p class="note">チャージする人 5,000人 × 月に0.5回オリラジを選ぶ × 客単価1.3万円。</p>
+      </div>
+      <div class="split" style="margin-top:0.75rem">
+        <div class="card">
+          <div class="label">男性1来店（公開数字）</div>
+          <p class="num">1.3万円</p>
+          <p class="note">恵比寿店 2025年12月。月商1億円 ÷ 男性7,768人。</p>
+        </div>
+        <div class="card">
+          <div class="label">5,000円の意味</div>
+          <p class="num">2.6倍</p>
+          <p class="note">顧客が先に出す5,000円が、1.3万円の来店を自社に引っ張ります。</p>
+        </div>
+      </div>
+      <p class="note">人数と「月0.5回」は仮定です。客単価だけが公開値です。今夜の行き先次第で消える売上を、男性来店の5%が競合に行くと置くと年8.7億円になります。全部は取れません。一部を固定します。</p>
+
+      <h3>会計上のメリット</h3>
+      <p>チャージした時点で現金は会社に入ります。売上にはしません。貸借対照表の前受金（負債）です。来店して使ったときに、はじめて売上になります。</p>
+      <div class="steps">
+        <div class="card gold">
+          <div class="label">チャージ直後の現金</div>
+          <p class="num">2,500万円</p>
+          <p class="note">5,000人 × 5,000円。P/L は動きません。現金と負債だけが増えます。</p>
+        </div>
+        <div class="card">
+          <div class="label">運転に使える額</div>
+          <p class="num">1,250万円</p>
+          <p class="note">資金決済法で、未使用残高の半分は供託します。残り半分は無利子の運転資金です。銀行借入なら金利がかかります。</p>
+        </div>
+        <div class="card">
+          <div class="label">使われなかった分</div>
+          <strong>ブレイケージ（失効益）</strong>
+          <span class="note">マイルの失効は、付与したご褒美が消えることです。先払い残高の失効は、受け取った現金が売上になります。目的は失効を増やすことではなく、残高が残ることで再来店が起きることです。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <p class="kicker">3. どう達成するか</p>
+      <h2>目的をKPIにし、その数字を動かす機能を足します。</h2>
+      <p>新規事業ではありません。今の solotte! の上に、残高を載せます。</p>
+
+      <h3>KPI</h3>
+      <table>
+        <thead>
+          <tr><th>見る数字</th><th>何のため</th><th>パイロットの目安</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="kpi-name">チャージ人数</td><td>収益の母数</td><td>恵比寿の男性来店の10%</td></tr>
+          <tr><td class="kpi-name">常時残高</td><td>会計の母数</td><td>人数 × 5,000円</td></tr>
+          <tr><td class="kpi-name">保有者の来店回数</td><td>収益の本体</td><td>非保有より月 +0.5回</td></tr>
+          <tr><td class="kpi-name">チャージから来店までの日数</td><td>残高が来店理由になっているか</td><td>中央値 7日以内</td></tr>
+          <tr><td class="kpi-name">残高払い比率</td><td>機能が使われているか</td><td>保有者の来店の50%</td></tr>
+          <tr><td class="kpi-name">再チャージ率</td><td>回り続けているか</td><td>初回から90日で40%</td></tr>
+        </tbody>
+      </table>
+      <p class="note">パイロットの目安は、始めるときの仮説です。数字が動かなければ機能を直します。</p>
+
+      <h3>詳細な機能</h3>
+      <table>
+        <thead>
+          <tr><th>機能</th><th>動かすKPI</th><th>中身</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="kpi-name">チャージ</td><td>人数・残高</td><td>3,000〜30,000円。クレカ / PayPay。ホームからすぐ買える。</td></tr>
+          <tr><td class="kpi-name">専用ウォレット</td><td>（混ぜない）</td><td>マイルと別残高。アマギフ交換は不可。</td></tr>
+          <tr><td class="kpi-name">ホームに残高</td><td>来店理由</td><td>起動してすぐ「5,000円」。店を選ぶ前に見える。</td></tr>
+          <tr><td class="kpi-name">店舗支払い</td><td>残高払い比率</td><td>既存の注文・会計に「残高で払う」を足す。相席料金と飲食。</td></tr>
+          <tr><td class="kpi-name">残高通知</td><td>来店回数・日数</td><td>「オリラジに5,000円入っています」を来店前に送る。</td></tr>
+          <tr><td class="kpi-name">複数店</td><td>チャージしやすさ</td><td>最初はオリラジ。のちに ag などグループへ。使い道が増えると先払いしやすい。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>現状の solotte! とのシナジー</h3>
+      <p>ゼロから決済アプリを作るのではありません。既にある導線に、残高を足します。</p>
+      <ul class="plain">
+        <li><strong>チェックイン</strong>　誰が来たか、もう分かっています。残高払いは会員IDに紐づきます。</li>
+        <li><strong>注文・会計</strong>　マイル払いの導線があります。そこに「残高払い」を足します。</li>
+        <li><strong>通知</strong>　お知らせ基盤があります。残高リマインドに使います。</li>
+        <li><strong>マイル</strong>　ご褒美として残します。先払いは来店理由です。役割を分けます。</li>
+        <li><strong>ミッション</strong>　初回チャージをミッションにできます。人数KPIを既存機能で稼げます。</li>
+        <li><strong>多店舗</strong>　オリラジ、ag、ドロシーなど。残高の使い道が増えるほど、チャージしやすくなります。</li>
+      </ul>
+    </section>
+
+    <section id="ref">
+      <p class="kicker">4. 参考企業</p>
+      <h2>スターバックスです。同じ二層です。</h2>
+      <p>スタバは「カード残高」と「Stars」を分けています。カード残高は先に入れるお金で、次もスタバに行く理由になります。Stars は来店のご褒美です。今回つくるのは前者、今のマイルは後者です。</p>
+      <div class="split">
+        <div class="card gold">
+          <div class="label">預かっている残高</div>
+          <p class="num">2,600億円</p>
+          <p class="note">FY2025。会計上は負債。17.5億ドル。</p>
+        </div>
+        <div class="card">
+          <div class="label">年の失効益</div>
+          <p class="num">330億円</p>
+          <p class="note">使われなかった残高が売上化。チャージ額の約1.5%。</p>
+        </div>
+      </div>
+      <p class="note">出典: Starbucks FY2025 Form 10-K。円換算は1ドル150円。クラウドNは客単価がコーヒーより大きいので、1人あたりの残高も大きくなりやすい、というのがこのモデルを使う理由です。</p>
+    </section>
+
+    <section id="start">
+      <p class="kicker">5. 始め方</p>
+      <h2>全社の前に、恵比寿1店でKPIが動くか見ます。</h2>
+      <p>恵比寿は月商1億円、男性来店7,768人という公開数字があります。ここで仮説を検証します。</p>
+      <div class="split">
+        <div class="card">
+          <div class="label">チャージ人数</div>
+          <p class="num">777人</p>
+          <p class="note">男性7,768人の10%。</p>
+        </div>
+        <div class="card">
+          <div class="label">常時残高</div>
+          <p class="num">389万円</p>
+          <p class="note">777人 × 5,000円。来店前に入る現金。</p>
+        </div>
+      </div>
+      <div class="card gold" style="margin-top:0.75rem">
+        <div class="label">増収の目安</div>
+        <p class="num">年 6,000万円</p>
+        <p class="note">半分が月に1回来店を増やす × 1.3万円。旗艦店の月商に対して約5%です。動いたらグループへ広げます。</p>
+      </div>
+
+      <h3>決めてほしいこと</h3>
+      <ol class="flow">
+        <li><strong>機能</strong>　アプリで残高を買い、店で払えるようにする。</li>
+        <li><strong>目的</strong>　収益は来店固定。会計は現金先行。</li>
+        <li><strong>制約</strong>　マイルと混ぜない。Apple課金にしない。</li>
+        <li><strong>ゲート</strong>　法務（自家型前払式支払手段、供託）が通らなければ Hold。</li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>社内共有用です。検索には出しません。客単価と来店数はクラウドエヌのプレスリリース（2026年1月30日）に基づきます。人数・来店増・流出率は試算です。</p>
+    </footer>
+  </div>
+</body>
+</html>
