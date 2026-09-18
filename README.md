@@ -1,5 +1,5 @@
-# solotte! 先払い残高の提案
+# solotte!/D3 先払い残高
 
-社内共有用の説明ページです。検索には出しません。
+社内共有用。
 
-公開URL: https://aspabac.github.io/solotte-prepaid-proposal/
+https://aspabac.github.io/solotte-prepaid-proposal/
